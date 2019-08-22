@@ -27,7 +27,7 @@ const MovieSearch = ({ searchMovies, isFetching, movies }) => {
                 {isFetching && <div>Loading movies...</div>}
                 {!isFetching &&
                     movies.map((movie, i) => (
-                        <Movie {...movie} />
+                        <Movie key={i} {...movie} />
                     ))}
             </div>
         </div>

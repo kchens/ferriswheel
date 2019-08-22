@@ -1,4 +1,5 @@
 import React from "react";
+import { original } from "immer";
 
 const listItemStyle = {
     display: "flex",
@@ -6,9 +7,18 @@ const listItemStyle = {
     margin: "1rem"
 };
 
-const Movie = (props) => (
+const Movie = ({title, overview, release_date, poster_path }) => (
     <div style={listItemStyle}>
-        <div>{JSON.stringify(props)}</div>
+        <h3>{title}</h3>
+        <div>{release_date}</div>
+        <div>{overview}</div>
+        <img 
+            srcSet={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster_path} 1x, https://image.tmdb.org/t/p/w600_and_h900_bestv2${poster_path} 2x`} 
+            sizes="auto" 
+            src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster_path}`}
+            className="" 
+            alt="Fear the Walking Dead"
+        />
     </div>
 );
 
