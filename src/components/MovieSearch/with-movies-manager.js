@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-
+import React, { PureComponent } from "react"
+import { popularMoviesUrl, getSearchMoviesUrl } from '../../urls'
 const withMoviesManager = WrappedComponent => {
     return class extends PureComponent {
         constructor(props) {
@@ -14,23 +14,26 @@ const withMoviesManager = WrappedComponent => {
         componentDidMount() {
             this.setState({ isFetching: true });
             this.fetchInitialMovies().then(movies => {
-                this.setState({
-                    isFetching: false
-                });
-                this.setState({ movies });
+                this.setState({ isFetching: false })
+                this.setState({ movies })
             });
         }
 
         fetchInitialMovies = () => {
-            return fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=8a3f121040d1d586b2c62b76991833c9')
+            return fetch(popularMoviesUrl)
                 .then(response => response.json())
                 .then(data => data.results) 
         };
 
         searchMovies = query => {
-            return fetch(`https://api.themoviedb.org/3/search/movie?api_key=8a3f121040d1d586b2c62b76991833c9&query=${query}&language=en-US&include_adult=false`)
+            this.setState({ isFetching: true });
+            fetch(getSearchMoviesUrl(query))
                 .then(response => response.json())
                 .then(data => data.results) 
+                .then(movies => { 
+                    this.setState({ isFetching: false })
+                    this.setState({ movies }) 
+                })
         };
 
         render() {
