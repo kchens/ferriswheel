@@ -1,7 +1,8 @@
-import React, { PureComponent } from "react"
+import React, { Component } from "react"
 import { popularMoviesUrl, getSearchMoviesUrl } from '../../urls'
+
 const withMoviesManager = WrappedComponent => {
-    return class extends PureComponent {
+    return class extends Component {
         constructor(props) {
             super(props);
 
@@ -13,6 +14,19 @@ const withMoviesManager = WrappedComponent => {
 
         componentDidMount() {
             this.searchMovies()
+        }
+
+        sortMovies = (filterOption) => {
+            let sortedMovies
+            if (filterOption === 'No Filter') {
+                sortedMovies = this.state.movies.sort((a, b) => a.id - b.id)
+            }
+
+            if (filterOption === 'Most Popular') {
+                sortedMovies = this.state.movies.sort((a, b) => b.vote_average - a.vote_average)
+            }
+            
+            this.setState({ movies: sortedMovies })
         }
 
         searchMovies = query => {
@@ -34,6 +48,7 @@ const withMoviesManager = WrappedComponent => {
                     {...this.props}
                     {...this.state}
                     searchMovies={this.searchMovies}
+                    sortMovies={this.sortMovies}
                 />
             );
         }

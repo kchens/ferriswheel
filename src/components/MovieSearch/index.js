@@ -17,11 +17,14 @@ export const listStyle = {
 };
 
 
-const MovieSearch = ({ searchMovies, isFetching, movies }) => {
+const MovieSearch = ({ searchMovies, sortMovies, isFetching, movies }) => {
     return (
         <div style={containerStyle}>
             <strong>Movie Search</strong>
-            <SearchInput searchMovies={searchMovies} />
+            <SearchInput 
+                searchMovies={searchMovies} 
+                sortMovies={sortMovies}
+            />
             <div style={listStyle}>
                 {isFetching && <div>Loading movies...</div>}
                 {!isFetching &&

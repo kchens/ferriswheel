@@ -25,6 +25,12 @@ class SearchInput extends PureComponent {
         if (!value) return this.handleSubmit()
     }
 
+    handleSelectChange = e => {
+        let value = e.target.value
+        console.log(this.props)
+        this.props.sortMovies(value)
+    }
+
     handleSubmit = e => {
         if (e) e.preventDefault()
         this.props.searchMovies(this.state.value)
@@ -42,6 +48,14 @@ class SearchInput extends PureComponent {
                     value={this.state.value} 
                     placeholder={'Search a movie or tv show'}
                 />
+                <select 
+                    onChange={this.handleSelectChange}
+                    defaultValue={'Sort By'}
+                >
+                    <option value={'Sort By'} disabled>Sort By</option>
+                    <option value="No Filter">No Filter</option>
+                    <option value="Most Popular">Most Popular</option>
+                </select>
             </form>
         );
     }
