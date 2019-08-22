@@ -12,27 +12,19 @@ const withMoviesManager = WrappedComponent => {
         }
 
         componentDidMount() {
-            this.setState({ isFetching: true });
-            this.fetchInitialMovies().then(movies => {
-                this.setState({ isFetching: false })
-                this.setState({ movies })
-            });
+            this.searchMovies()
         }
 
-        fetchInitialMovies = () => {
-            return fetch(popularMoviesUrl)
-                .then(response => response.json())
-                .then(data => data.results) 
-        };
-
         searchMovies = query => {
+            const url = query ? getSearchMoviesUrl(query) : popularMoviesUrl
+
             this.setState({ isFetching: true });
-            fetch(getSearchMoviesUrl(query))
+            fetch(url)
                 .then(response => response.json())
                 .then(data => data.results) 
                 .then(movies => { 
-                    this.setState({ isFetching: false })
                     this.setState({ movies }) 
+                    this.setState({ isFetching: false })
                 })
         };
 
