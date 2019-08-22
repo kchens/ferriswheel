@@ -27,7 +27,6 @@ class SearchInput extends PureComponent {
 
     handleSelectChange = e => {
         let value = e.target.value
-        console.log(this.props)
         this.props.sortMovies(value)
     }
 
