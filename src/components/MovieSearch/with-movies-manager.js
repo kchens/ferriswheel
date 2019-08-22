@@ -13,24 +13,24 @@ const withMoviesManager = WrappedComponent => {
 
         componentDidMount() {
             this.setState({ isFetching: true });
-            this.fetchInitialMovies().then(data => {
+            this.fetchInitialMovies().then(movies => {
                 this.setState({
                     isFetching: false
                 });
-                this.setState({ movies: data });
+                this.setState({ movies });
             });
         }
 
         fetchInitialMovies = () => {
             return fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=8a3f121040d1d586b2c62b76991833c9')
                 .then(response => response.json())
-                .then(data => console.log(data)) 
+                .then(data => data.results) 
         };
 
         searchMovies = query => {
             return fetch(`https://api.themoviedb.org/3/search/movie?api_key=8a3f121040d1d586b2c62b76991833c9&query=${query}&language=en-US&include_adult=false`)
                 .then(response => response.json())
-                .then(data => console.log(data)) 
+                .then(data => data.results) 
         };
 
         render() {
