@@ -22,20 +22,23 @@ const withMoviesManager = WrappedComponent => {
         }
 
         fetchInitialMovies = () => {
-            return fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc?api_key=8a3f121040d1d586b2c62b76991833c9')
+            return fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=8a3f121040d1d586b2c62b76991833c9')
                 .then(response => response.json())
                 .then(data => console.log(data)) 
         };
 
-        // searchMovies = query => {
-        // };
+        searchMovies = query => {
+            return fetch(`https://api.themoviedb.org/3/search/movie?api_key=8a3f121040d1d586b2c62b76991833c9&query=${query}&language=en-US&include_adult=false`)
+                .then(response => response.json())
+                .then(data => console.log(data)) 
+        };
 
         render() {
             return (
                 <WrappedComponent
                     {...this.props}
                     {...this.state}
-                    // searchMovies={this.searchMovies}
+                    searchMovies={this.searchMovies}
                 />
             );
         }
