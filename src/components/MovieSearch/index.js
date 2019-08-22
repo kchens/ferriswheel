@@ -12,8 +12,8 @@ const containerStyle = {
 export const listStyle = {
     display: "flex",
     flex: 1,
-    flexDirection: "column",
-    marginTop: "2rem"
+    marginTop: "2rem",
+    flexWrap: "wrap",
 };
 
 
