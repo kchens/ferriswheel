@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import moment from 'moment'
 
 const listItemStyle = {
     display: "flex",
@@ -24,7 +25,7 @@ const Movie = ({title, overview, release_date, poster_path }) => (
         />
         <div style={rightDetail}>
             <h2>{title}</h2>
-            <div style={{fontSize: "12px", marginBottom: "0.5rem"}}>{release_date}</div>
+            <div style={{ fontSize: "12px", marginBottom: "0.5rem" }}>{moment(release_date).format('LL')}</div>
             <div style={{margin: "1rem", textAlign: "justify"}}>{overview}</div>
         </div>
     </div>
