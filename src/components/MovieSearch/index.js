@@ -6,7 +6,6 @@ import Movie from './Movie'
 const containerStyle = {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     padding: "2rem"
 };
 

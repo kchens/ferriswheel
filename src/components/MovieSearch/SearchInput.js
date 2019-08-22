@@ -1,7 +1,17 @@
 import React, { PureComponent } from "react";
 
 const formStyle = {
-    marginTop: "1rem"
+    margin: '1rem'
+}
+const inputStyle = {
+    border: '1px solid black',
+    borderRadius: '30px',
+    padding: '0 0 0 20px',
+    height: '50px',
+    boxSizing: 'content-box',
+    width: '100%',
+    outline: 'none',
+    textAlign: 'center,'
 };
 
 class SearchInput extends PureComponent {
@@ -26,7 +36,12 @@ class SearchInput extends PureComponent {
                 style={formStyle}
                 onSubmit={this.handleSubmit}
             >
-                <input onChange={this.handleChange} value={this.state.value} />
+                <input 
+                    style={inputStyle}
+                    onChange={this.handleChange} 
+                    value={this.state.value} 
+                    placeholder={'Search a movie or tv show'}
+                />
             </form>
         );
     }
