@@ -9,16 +9,18 @@ class SearchInput extends Component {
         value: ""
     };
 
-    handleChange = e => this.setState({ value: e.target.value });
+    handleChange = e => this.setState({ value: e.target.value })
+
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.searchMovies(this.state.value);
+    }
 
     render() {
         return (
             <form
                 style={formStyle}
-                onSubmit={e => {
-                    e.preventDefault();
-                    this.props.searchMovies(this.state.value);
-                }}
+                onSubmit={this.handleSubmit}
             >
                 <input onChange={this.handleChange} value={this.state.value} />
             </form>
